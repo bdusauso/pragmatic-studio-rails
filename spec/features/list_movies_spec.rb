@@ -36,4 +36,13 @@ describe "Viewing the list of movies" do
 
   end
 
+  it "allows navigation to the details of a movie" do
+    movie = Movie.create(movie_attributes)
+
+    visit movies_url
+
+    click_link movie.title
+
+    expect(current_path).to eq(movie_path(movie))
+  end
 end
