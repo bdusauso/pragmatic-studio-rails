@@ -36,6 +36,14 @@ describe "Viewing the list of movies" do
 
   end
 
+  it "doesn't show a movie that hasn't been released yet" do
+    movie = Movie.create(movie_attributes(released_on: 1.month.from_now))
+
+    visit movies_url
+
+    expect(page).not_to have_text(movie.title)
+  end
+
   it "allows navigation to the details of a movie" do
     movie = Movie.create(movie_attributes)
 
