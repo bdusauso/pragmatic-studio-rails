@@ -43,3 +43,5 @@ end
 group :test do
   gem 'capybara', '2.1.0'
 end
+
+gem 'quiet_assets', group: :development
