@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe "Viewing an individual movie" do
-
-  it "shows the detail of a movie" do
-    movie = Movie.create!(movie_attributes)
+  it "shows the movie's details" do
+    movie = Movie.create(movie_attributes)
 
     visit movie_url(movie)
 
@@ -14,11 +13,11 @@ describe "Viewing an individual movie" do
     expect(page).to have_text(movie.cast)
     expect(page).to have_text(movie.director)
     expect(page).to have_text(movie.duration)
-    expect(page).to have_selector("img[src$='#{movie.image_file_name}']")  
-  end
-
+    expect(page).to have_selector("img[src$='#{movie.image_file_name}']")
+  end  
+  
   it "shows the total gross if the total gross exceeds $50M" do
-    movie = Movie.create!(movie_attributes(total_gross: 60_000_000))
+    movie = Movie.create(movie_attributes(total_gross: 60000000))
 
     visit movie_url(movie)
 
@@ -26,7 +25,7 @@ describe "Viewing an individual movie" do
   end
 
   it "shows 'Flop!' if the total gross is less than $50M" do
-    movie = Movie.create!(movie_attributes(total_gross: 20_000_000))
+    movie = Movie.create(movie_attributes(total_gross: 40000000))
 
     visit movie_url(movie)
 
